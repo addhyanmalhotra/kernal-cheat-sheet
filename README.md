@@ -38,7 +38,7 @@ ii  linux-image-unsigned-5.15.0-23-generic-dbgsym 5.15.0-23.23                  
     mkdir -p v6.0.1 && cd v6.0.1
     wget 'https://kernel.ubuntu.com/~kernel-ppa/mainline/v6.0.1/amd64/linux-headers-6.0.1-060001-generic_6.0.1-060001.202210120833_amd64.deb'
     wget 'https://kernel.ubuntu.com/~kernel-ppa/mainline/v6.0.1/amd64/linux-headers-6.0.1-060001_6.0.1-060001.202210120833_all.deb'
-    wget 'https://kernel.ubuntu.com/~kernel-ppa/mainline/v6.0.1/amd64/linux-image-unsigned-6.0.1-060001-generic_6.0.1-060001.202210120833_amd64.deb
+    wget 'https://kernel.ubuntu.com/~kernel-ppa/mainline/v6.0.1/amd64/linux-image-unsigned-6.0.1-060001-generic_6.0.1-060001.202210120833_amd64.deb'
     wget 'https://kernel.ubuntu.com/~kernel-ppa/mainline/v6.0.1/amd64/linux-modules-6.0.1-060001-generic_6.0.1-060001.202210120833_amd64.deb'
     ```
  5. Install downloaded packages
@@ -51,3 +51,38 @@ ii  linux-image-unsigned-5.15.0-23-generic-dbgsym 5.15.0-23.23                  
     ```bash
     dpkg --list | grep 6.0.1
     ``` 
+ 7. reboot 
+ 8. On grub screen select advanced options for ubuntu
+ 9. select your desired kernel
+
+## Building Linux Kernel
+ 1. Download desired kernel from kernel.org as tar
+ 2. Unpack the tar ball
+    ```bash
+    tar xvf linux-6.0.1.tar.xz
+    ```
+ 3. Install Necessary packages
+    ```bash
+    sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+    ```
+ 4. Configure kernel and build
+    ```bash
+    cd linux-6.0.1
+    
+    # Start GUI confiuration
+    make menuconfig
+
+    # Build Kernel and Modules
+    # -j option specifies number of parallel jobs you want the process to use
+    # nproc shows number of procesing units available
+    make -j $(nproc)
+
+    # Install necessary modules
+    sudo make modules_install
+
+    # Install Kernel
+    sudo make install -j $(nproc)
+
+    # update grub (optional)
+    sudo update-grub
+    ```
