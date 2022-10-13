@@ -86,3 +86,14 @@ ii  linux-image-unsigned-5.15.0-23-generic-dbgsym 5.15.0-23.23                  
     # update grub (optional)
     sudo update-grub
     ```
+ ## Modprobe
+ modprobe - Add and remove (enable/disable) modules from the Linux Kernel
+ Syntax
+ ```bash
+ # enable
+ modprobe <module_name>
+ ```
+ ## List kernel active modules
+ ```bash
+ lsmod
+ ```
