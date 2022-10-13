@@ -92,8 +92,10 @@ ii  linux-image-unsigned-5.15.0-23-generic-dbgsym 5.15.0-23.23                  
  ```bash
  # enable
  modprobe <module_name>
+ # disable
+ modprobe -r <module_name>
  ```
- ## List kernel active modules
+ ## List active modules
  ```bash
  lsmod
  ```
