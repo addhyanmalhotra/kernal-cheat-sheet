@@ -56,6 +56,7 @@ ii  linux-image-unsigned-5.15.0-23-generic-dbgsym 5.15.0-23.23                  
  9. select your desired kernel
 
 ## Building Linux Kernel
+ This method has been adapted from [kernel compile notes](https://askubuntu.com/questions/718381/how-to-compile-and-install-custom-mainline-kernel/718662#718662) with few aditions based on personal experience
  1. Download desired kernel from https://kernel.org as tar
  2. Unpack the tar ball
     ```bash
@@ -72,7 +73,7 @@ ii  linux-image-unsigned-5.15.0-23-generic-dbgsym 5.15.0-23.23                  
     cd linux-6.0.1
     
     # Copy existing configuration from current kernel
-    cp /boot/vmlinuz-$(uname -r) .config
+    cp /boot/config-$(uname -r) .config
     
     # (OPTIONAL) edit config using GUI menu
     make menuconfig
